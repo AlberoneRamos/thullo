@@ -1,6 +1,7 @@
 interface User {
   username: string,
   fullname: string,
+  profilePic?: string,
   id: string,
 }
 
