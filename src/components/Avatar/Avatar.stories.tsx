@@ -1,11 +1,11 @@
 import React from 'react';
-import { Avatar, AvatarProps } from 'components/Avatar';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import Avatar, { AvatarProps } from './Avatar';
 import users from '__mocks__/users';
 
 export default {
   title: 'Avatar component',
-  component: Avatar
+  component: Avatar,
 } as Meta;
 
 const Template: Story<AvatarProps> = (args) => <Avatar {...args} />;

@@ -10,6 +10,7 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "classnames": "^2.2.6",
+    "feather-icons": "^4.28.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -21,8 +22,7 @@
   "scripts": {
     "start": "npm run build:css && react-scripts start",
     "build": "npm run build:css && react-scripts build",
-    "test-watch": "react-scripts test",
-    "test": "npm run jest",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "npm run build:css && start-storybook -p 6006 -s public",
     "build:css": "postcss src/styles/tailwind.css -o src/main.css",

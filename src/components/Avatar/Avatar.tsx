@@ -12,16 +12,17 @@ export type AvatarProps = {
   size?: 'extra-small' | 'small' | 'normal' | 'large' | 'extra-large'
 };
 
-const Avatar: React.FC<AvatarProps>  = ( { user: { fullname, profilePic }, classList, size }) => (
+const Avatar = ({ user: { fullname, profilePic }, classList, size }: AvatarProps) => (
   <div className={classNames(classList, 'avatar', size)} data-testid="avatar">
     {
-      profilePic ? 
-      <img src={profilePic} alt="User profile" data-testid="avatar-image" className="rounded-full"/>
+      profilePic 
+      ? <img src={profilePic} alt="User profile" data-testid="avatar-image" className="rounded-lg"/>
       : (
-        <span data-testid="avatar-initials" className="rounded-full">
+        <span data-testid="avatar-initials" className="rounded-lg">
           {fullname.split(' ').map((name) => name.charAt(0).toUpperCase())}
         </span>
-      )}
+      )
+    }
   </div>
 );
 

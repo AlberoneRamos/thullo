@@ -1,15 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Task from './Task';
 import tasks from '__mocks__/tasks';
 
 describe('Task test section', () => {
-  it('Should render a description.', () => {
-    // prepare
-    const { getByTestId } = render(<Task task={tasks['task1']} />);
-    // execute
-    expect(getByTestId('task-description')).toHaveTextContent(tasks['task1'].description);
-  });
   it('Should render 1 or more assignees.', () => {
     // prepare
     const { getAllByTestId } = render(<Task task={tasks['task1']} />);
@@ -22,6 +16,14 @@ describe('Task test section', () => {
     // execute
     expect(getByTestId('task-title')).toHaveTextContent(tasks['task1'].title);
   });
+  it('Should receive a function to be called when button on the right of assignees is clicked.', () => {
+    // prepare
+    const mockFunction = jest.fn();
+    const { getByTestId } = render(<Task task={tasks['task1']} assigneeAction={mockFunction} />);
+    // execute
+    fireEvent(getByTestId('assignee-action'), new MouseEvent('click'));
+    expect(mockFunction).toHaveBeenCalled();
+  });
   it('Should render a picture.', () => {
     // prepare
     const { getByTestId } = render(<Task task={tasks['task1']} />);
@@ -33,11 +35,5 @@ describe('Task test section', () => {
     const { getAllByTestId } = render(<Task task={tasks['task1']} />);
     // execute
     expect(getAllByTestId('tag')).toHaveLength(2);
-  });
-  it('Should render a due date.', () => {
-    //prepare
-    const { getByTestId } = render(<Task task={tasks['task1']} />);
-    // execute
-    expect(getByTestId('task-due')).toHaveTextContent((new Date(tasks['task1'].due)).toString());
   });
 });

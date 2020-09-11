@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Task, TaskProps } from 'components/Task';
 import tasks from '__mocks__/tasks';
+import Task, { TaskProps } from './Task';
 
 export default {
   title: 'Task component',
