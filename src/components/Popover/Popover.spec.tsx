@@ -29,16 +29,17 @@ describe('Popover test section', () => {
       <Popover items={[{ label: 'Label', clickHandler: popoverItemFunction }]}/>
     );
     // execute
-    fireEvent(getByTestId('popover-item'), new MouseEvent('click'));
+    fireEvent.click(getByTestId('popover-button'));
+    fireEvent.click(getByTestId('popover-item'));
     expect(popoverItemFunction).toHaveBeenCalled();
   });
-  it('Should')
+
   it('Should toggle popover dropdown display when clicking the button.', () => {
     // prepare
     const { getByTestId } = render(<Popover />);
     // execute
     expect(getByTestId('popover-dropdown')).toHaveClass('hidden');
-    fireEvent(getByTestId('popover-button'), new MouseEvent('click'));
+    fireEvent.click(getByTestId('popover-button'));
     expect(getByTestId('popover-dropdown')).toHaveClass('flex');
   });
 });

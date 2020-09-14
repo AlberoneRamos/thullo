@@ -7,7 +7,7 @@ export default {
   component: Popover,
 } as Meta;
 
-const Template: Story<PopoverProps> = (args) => <Popover {...args} />;
+const Template: Story<PopoverProps> = (args: PopoverProps) => <Popover {...args} />;
 
 export const PopoverComponent = Template.bind({});
 PopoverComponent.args = { 

@@ -1,5 +1,6 @@
 .popover {
-  & > .dropdown {
+  & > .popover-dropdown {
+    min-width: 80px;
     top: 100%;
   }
 }

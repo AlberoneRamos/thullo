@@ -11,4 +11,4 @@ export default {
 const Template: Story<ListProps> = (args) => <List {...args} />;
 
 export const ListComponent = Template.bind({});
-ListComponent.args = { tasks };
+ListComponent.args = { tasks, title: 'To-do' };

@@ -1,0 +1,6 @@
+.list {
+  max-width: 243px;
+  & .popover > .popover-dropdown {
+    right: 0;
+  }
+}
