@@ -2,30 +2,38 @@ import React, { useState } from 'react';
 import { Task } from 'components/Task';
 import { Popover } from 'components/Popover';
 import { MeatballsIcon, PlusIcon } from 'icons';
+import ListModel from 'models/List';
+import classNames from 'classnames';
 import TaskModel from 'models/Task';
 import './List.scss';
 
-export type ListProps = {
-  /** Array of tasks to be displayed here */
-  tasks: { [id: string]: TaskModel },
-  /** List title */
-  title: string,
+export interface ListProps extends ListModel {
   /** Function to be called when clicking on button to add new card */
-  addTaskHandler(task: TaskModel): void,
+  addTaskHandler?(task: TaskModel): void,
   /** Actions to be displayed on three dots button */
-  listActions?: [{ label: string, clickHandler (params?: any): void }] 
+  listActions?: [ListAction],
+  /** CSS classes array or string */
+  classList?: Array<string> | string,
+}
+
+type ListAction = {
+  /** List action label */
+  label: string, 
+  /** Function to be called when the list action is clicked */
+  clickHandler (params?: any): void
 }
 
 const List = ({ 
   tasks, 
   title, 
-  addTaskHandler, 
-  listActions 
+  addTaskHandler = (task) => console.log(task), 
+  listActions = [{ label: 'Action', clickHandler: () => {} }],
+  classList = ''
 }: ListProps) => { 
-  const [displayAddTask, setDisplayAddTask] = useState(false);
-  const [taskTitle, setTaskTitle] = useState('');
+  const [displayAddTask, setDisplayAddTask] = useState<Boolean>(false);
+  const [taskTitle, setTaskTitle] = useState<string>('');
   return (
-    <div className="list" data-testid="list">
+    <div className={classNames('list', classList)} data-testid="list">
       <div data-testid="list-header" className="flex justify-between">
         <b data-testid="list-title" className="font-semibold">{title}</b>
         <Popover 
@@ -44,6 +52,7 @@ const List = ({
               e.preventDefault();
               addTaskHandler(new TaskModel(taskTitle));
               setTaskTitle('');
+              setDisplayAddTask(false);
             }}
           >
             <input 
@@ -72,10 +81,6 @@ const List = ({
       </div>
     </div>
   );
-};
-
-List.defaultProps = {
-  addTaskHandler: (task: TaskModel) => console.log(task)
 };
 
 export default List;

@@ -23,10 +23,13 @@ export type PopoverItem = {
 }
 
 const Popover = ({ 
-  label, 
-  items, 
-  isOpen,
-  classList
+  label = <ChevronIcon />, 
+  items = [{
+    label: '',
+    clickHandler: () => {}
+  }], 
+  isOpen = false,
+  classList = ''
 }: PopoverProps) => {
   const [open, setOpen] = useState(isOpen);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -67,16 +70,6 @@ const Popover = ({
       </div>
     </div>
   );
-};
-
-Popover.defaultProps = {
-  label: <ChevronIcon />,
-  items: [{
-    label: '',
-    clickHandler: () => {}
-  }],
-  isOpen: false,
-  classList: ''
 };
 
 export default Popover;

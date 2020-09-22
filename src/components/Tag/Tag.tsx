@@ -9,7 +9,7 @@ type TagProps = {
   classList?: Array<string> | string
 };
 
-const Tag = ({ children, classList }: TagProps) => (
+const Tag = ({ children, classList = '' }: TagProps) => (
   <small
     className={classNames(
       classList, 
@@ -20,9 +20,5 @@ const Tag = ({ children, classList }: TagProps) => (
     {children}
   </small>
 );
-
-Tag.defaultProps = {
-  classList: ''
-};
 
 export default Tag;

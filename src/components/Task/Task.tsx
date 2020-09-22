@@ -22,8 +22,8 @@ const Task = ({
     tags,
     picture,
   }, 
-  assigneeAction, 
-  classList
+  assigneeAction = () => {}, 
+  classList = ''
 }: TaskProps) => (
   <div className={classNames("task rounded-lg flex flex-col shadow-lg bg-white p-3", classList)} data-testid="task">
     <img 
@@ -49,10 +49,5 @@ const Task = ({
     </div>
   </div>
 );
-
-Task.defaultProps = {
-  classList: '',
-  assigneeAction: () => {}
-};
 
 export default Task;
